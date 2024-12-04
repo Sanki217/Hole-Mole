@@ -2,57 +2,85 @@ using UnityEngine;
 
 public class HammerController : MonoBehaviour
 {
-    public Transform hammerPosition; // Parent object that follows the mouse
-    public Transform hammer; // Hammer child object
-    public Animator hammerAnimator; // Animator for the hammer
-    public Camera mainCamera; // Main camera in the scene
-    public float movementSpeed = 10f; // Speed of the Hammer Position following the mouse
-    public float followDelay = 0.2f; // Delay for the hammer to follow the Hammer Position
-    public LayerMask raycastLayer; // LayerMask for the raycast to hit only specific objects
+    public Camera mainCamera;
+    public LayerMask raycastLayer;
+    public Vector3 offset = new Vector3(0, 0.5f, 0); 
 
-    private Vector3 hammerVelocity; // Used for smooth dampening
+    [Header("Rotation Settings")]
+    public float minRotationX = -135f;
+    public float maxRotationX = -90f;
+    public int hitFrames = 15;
+    public int returnFrames = 10; 
+    public float followSpeed = 10f; 
+
+    private Vector3 currentVelocity;
+    private bool isHitting = false;
+    private float rotationProgress = 0f;
+    private bool returningToDefault = false; 
+
+    private float currentYRotation; 
+    private float currentZRotation; 
 
     void Start()
     {
-        if (hammerPosition == null || hammer == null || hammerAnimator == null || mainCamera == null)
-        {
-            Debug.LogError("Please assign all required references in the Inspector.");
-        }
+    
+
+        currentYRotation = transform.localEulerAngles.y;
+        currentZRotation = transform.localEulerAngles.z;
     }
 
     void Update()
     {
-        MoveHammerPositionToMouse();
-        SmoothFollowHammer();
-        CheckForHit();
+        SmoothFollowCursor();
+        HandleInput();
+        RotateHammer();
     }
 
-    void MoveHammerPositionToMouse()
+    void SmoothFollowCursor()
     {
-        // Get mouse position using raycasting, restricted to a specific layer
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, raycastLayer))
         {
-            Vector3 targetPosition = hit.point;
-            targetPosition.y = hammerPosition.position.y; // Maintain constant Y height
-            hammerPosition.position = Vector3.Lerp(hammerPosition.position, targetPosition, Time.deltaTime * movementSpeed);
+            Vector3 targetPosition = hit.point + offset;
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, 1f / followSpeed);
         }
     }
 
-    void SmoothFollowHammer()
+    void HandleInput()
     {
-        if (hammer != null)
+        if (Input.GetMouseButtonDown(0) && !isHitting && !returningToDefault)
         {
-            // Smoothly move the hammer towards the hammer position
-            hammer.position = Vector3.SmoothDamp(hammer.position, hammerPosition.position, ref hammerVelocity, followDelay);
+            isHitting = true;
+            rotationProgress = 0f;
         }
     }
 
-    void CheckForHit()
+    void RotateHammer()
     {
-        if (Input.GetMouseButtonDown(0)) // Left mouse button
+        if (isHitting)
         {
-            hammerAnimator.SetTrigger("Hit"); // Trigger hammer hit animation
+            rotationProgress += Time.deltaTime * (60f / hitFrames);
+            float newXRotation = Mathf.Lerp(minRotationX, maxRotationX, rotationProgress);
+            transform.localEulerAngles = new Vector3(newXRotation, currentYRotation, currentZRotation);
+
+            if (rotationProgress >= 1f)
+            {
+                isHitting = false;
+                returningToDefault = true;
+                rotationProgress = 0f;
+            }
+        }
+        else if (returningToDefault)
+        {
+            rotationProgress += Time.deltaTime * (60f / returnFrames);
+            float newXRotation = Mathf.Lerp(maxRotationX, minRotationX, rotationProgress);
+            transform.localEulerAngles = new Vector3(newXRotation, currentYRotation, currentZRotation);
+
+            if (rotationProgress >= 1f)
+            {
+                returningToDefault = false;
+                rotationProgress = 0f; 
+            }
         }
     }
 }
