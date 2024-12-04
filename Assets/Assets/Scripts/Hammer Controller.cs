@@ -4,29 +4,31 @@ public class HammerController : MonoBehaviour
 {
     public Camera mainCamera;
     public LayerMask raycastLayer;
-    public Vector3 offset = new Vector3(0, 0.5f, 0); 
+    public Vector3 offset = new Vector3(0, 0.5f, 0);
 
     [Header("Rotation Settings")]
     public float minRotationX = -135f;
     public float maxRotationX = -90f;
     public int hitFrames = 15;
-    public int returnFrames = 10; 
-    public float followSpeed = 10f; 
+    public int returnFrames = 10;
+    public float followSpeed = 10f;
 
     private Vector3 currentVelocity;
     private bool isHitting = false;
     private float rotationProgress = 0f;
-    private bool returningToDefault = false; 
+    private bool returningToDefault = false;
 
-    private float currentYRotation; 
-    private float currentZRotation; 
+    private float currentYRotation;
+    private float currentZRotation;
+
+    private AudioSource audioSource;
 
     void Start()
     {
-    
-
         currentYRotation = transform.localEulerAngles.y;
         currentZRotation = transform.localEulerAngles.z;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -65,6 +67,12 @@ public class HammerController : MonoBehaviour
 
             if (rotationProgress >= 1f)
             {
+                // Odtwórz dŸwiêk uderzenia
+                if (audioSource != null)
+                {
+                    audioSource.Play();
+                }
+
                 isHitting = false;
                 returningToDefault = true;
                 rotationProgress = 0f;
@@ -79,7 +87,7 @@ public class HammerController : MonoBehaviour
             if (rotationProgress >= 1f)
             {
                 returningToDefault = false;
-                rotationProgress = 0f; 
+                rotationProgress = 0f;
             }
         }
     }
