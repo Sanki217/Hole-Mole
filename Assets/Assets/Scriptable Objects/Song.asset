@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd705752138e9504b9ef774ac78f72dd, type: 3}
+  m_Name: Song
+  m_EditorClassIdentifier: 
+  <Music>k__BackingField: {fileID: 8300000, guid: 9c4eb05a58439e04a914556323e97fe4, type: 3}
+  notes:
+  - <TenthSeconds>k__BackingField: 5
+    <Key>k__BackingField: 4
+  - <TenthSeconds>k__BackingField: 8
+    <Key>k__BackingField: 1
+  - <TenthSeconds>k__BackingField: 14
+    <Key>k__BackingField: 5
+  - <TenthSeconds>k__BackingField: 18
+    <Key>k__BackingField: 8
+  - <TenthSeconds>k__BackingField: 24
+    <Key>k__BackingField: 6
+  - <TenthSeconds>k__BackingField: 36
+    <Key>k__BackingField: 2
+  - <TenthSeconds>k__BackingField: 44
+    <Key>k__BackingField: 1
+  - <TenthSeconds>k__BackingField: 54
+    <Key>k__BackingField: 4
+  - <TenthSeconds>k__BackingField: 68
+    <Key>k__BackingField: 3
+  - <TenthSeconds>k__BackingField: 75
+    <Key>k__BackingField: 9
+  - <TenthSeconds>k__BackingField: 83
+    <Key>k__BackingField: 2
+  - <TenthSeconds>k__BackingField: 91
+    <Key>k__BackingField: 7
+  - <TenthSeconds>k__BackingField: 99
+    <Key>k__BackingField: 1
+  - <TenthSeconds>k__BackingField: 106
+    <Key>k__BackingField: 1
+  - <TenthSeconds>k__BackingField: 115
+    <Key>k__BackingField: 4
+  - <TenthSeconds>k__BackingField: 125
+    <Key>k__BackingField: 1
+  - <TenthSeconds>k__BackingField: 131
+    <Key>k__BackingField: 2
+  - <TenthSeconds>k__BackingField: 136
+    <Key>k__BackingField: 1
+  - <TenthSeconds>k__BackingField: 138
+    <Key>k__BackingField: 8
+  - <TenthSeconds>k__BackingField: 145
+    <Key>k__BackingField: 9
+  - <TenthSeconds>k__BackingField: 148
+    <Key>k__BackingField: 7
+  - <TenthSeconds>k__BackingField: 152
+    <Key>k__BackingField: 1
+  - <TenthSeconds>k__BackingField: 158
+    <Key>k__BackingField: 2
+  - <TenthSeconds>k__BackingField: 164
+    <Key>k__BackingField: 3
+  - <TenthSeconds>k__BackingField: 170
+    <Key>k__BackingField: 4
+  - <TenthSeconds>k__BackingField: 175
+    <Key>k__BackingField: 9
+  - <TenthSeconds>k__BackingField: 185
+    <Key>k__BackingField: 8
+  - <TenthSeconds>k__BackingField: 190
+    <Key>k__BackingField: 4
+  - <TenthSeconds>k__BackingField: 200
+    <Key>k__BackingField: 7
+  - <TenthSeconds>k__BackingField: 205
+    <Key>k__BackingField: 6
+  - <TenthSeconds>k__BackingField: 211
+    <Key>k__BackingField: 3
