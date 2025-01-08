@@ -12,6 +12,13 @@ public class Mole : MonoBehaviour
     [SerializeField] private VisualEffect missFVX;
     [SerializeField] private GameObject lightEffect;
 
+    private DifficultyManager difficultyManager;
+
+    private void Start()
+    {
+        GameManager.Instance.TryGetManager(out difficultyManager);
+    }
+
     public void ShowHit(bool success)
     {
         string animation = success ? "Mole Hammer Hit" : "Mole Hammer Miss";
@@ -56,7 +63,7 @@ public class Mole : MonoBehaviour
 
     private IEnumerator TimeWindow()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(difficultyManager.GetDifficultyInFloat());
 
         TimeWindowPassed();
     }
