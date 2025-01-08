@@ -15,45 +15,99 @@ public class MainMenu : MonoBehaviour, IWindow
 
     [SerializeField] private SteamLobby steamLobby;
 
+    [SerializeField] private AudioClip selectionSound;
+    [SerializeField] private AudioClip coinSound;
+    [SerializeField] private AudioClip clickSound;
+
+    [SerializeField] private AudioSource ambientAudioSource;
+
+    private AudioSource audioSource;
+
     public void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
         GameManager.Instance.TryGetManager(out networkGameStateManager);
 
         networkGameStateManager.OnNetworkGameStateSet += OnNetworkGameStateSet;
     }
 
+    public void PlaySelectionSound()
+    {
+        PlaySound(selectionSound);
+    }
+
+    public void PlayCoinSound(float volume = 1.0f)
+    {
+        PlaySound(coinSound, volume);
+    }
+
+    public void PlayClickSound()
+    {
+        PlaySound(clickSound);
+    }
+
+    private void PlaySound(AudioClip clip, float volume = 1.0f)
+    {
+        if (clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
+        }
+    }
+
     public void OnClose()
     {
-
     }
 
     public void OnOpen()
     {
-
     }
 
     public void HostButton()
     {
-        if(useSteam) { steamLobby.HostLobby(); }
-        else { manager.HostLocal(); }    
+        PlayCoinSound(0.5f); // Przyk³adowo, zmniejszamy g³oœnoœæ do 50%
+
+        if (useSteam)
+        {
+            steamLobby.HostLobby();
+        }
+        else
+        {
+            manager.HostLocal();
+        }
     }
 
     public void JoinButton()
     {
+        PlayCoinSound(0.5f); // Przyk³adowo, zmniejszamy g³oœnoœæ do 50%
         manager.JoinLocal();
     }
 
     public void StartGameButton()
     {
+        if (ambientAudioSource != null)
+        {
+            ambientAudioSource.Stop();
+        }
+
         networkGameStateManager.ChangeGameState(NetworkGameState.Game);
+    }
+
+    public void ServerListButton()
+    {
+        PlayClickSound();
+        // Kod do wyœwietlenia listy serwerów
     }
 
     private void OnNetworkGameStateSet(NetworkGameState networkGameState)
     {
-        switch(networkGameState)
+        switch (networkGameState)
         {
-            case NetworkGameState.Lobby: ShowLobby(); break;
-            case NetworkGameState.Game: HideMainMenu(); break;
+            case NetworkGameState.Lobby:
+                ShowLobby();
+                break;
+            case NetworkGameState.Game:
+                HideMainMenu();
+                break;
         }
     }
 
@@ -64,6 +118,7 @@ public class MainMenu : MonoBehaviour, IWindow
         mainMenuToggle.SetActive(true);
         lobbyToggle.SetActive(true);
     }
+
     private void HideMainMenu()
     {
         mainMenuToggle.SetActive(false);
