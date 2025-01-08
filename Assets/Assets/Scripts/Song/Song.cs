@@ -8,27 +8,27 @@ public class Song : ScriptableObject
 
     [SerializeField] private Note[] notes = new Note[0];
 
-    private int lastIndex;
+    private int currentIndex;
 
     public void Restart()
     {
-        lastIndex = 0;
+        currentIndex = 0;
     }
 
     public bool TryGetNote(int tenthsecond, out Note note)
     {
         note = new();
 
-        if (notes.Length <= lastIndex)
+        if (notes.Length <= currentIndex)
         {
-            lastIndex = 0;
+            currentIndex = 0;
         }
 
-        if(notes[lastIndex].TenthSeconds == tenthsecond)
+        if(notes[currentIndex].TenthSeconds <= tenthsecond)
         {
-            note = notes[lastIndex];
+            note = notes[currentIndex];
 
-            lastIndex++;
+            currentIndex++;
 
             return true;
         }
