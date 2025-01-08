@@ -9,6 +9,9 @@ public class Machine : NetworkBehaviour
     [SerializeField] private Mole[] moles = new Mole[0];
     [SerializeField] private int playerID;
 
+    [SerializeField] private GameObject hit;
+    [SerializeField] private GameObject miss;
+
     private void Start()
     {
         GameManager.Instance.TryGetManager(out songManager);
@@ -33,7 +36,7 @@ public class Machine : NetworkBehaviour
     }
 
     private void OnNoteBroadcasted(Note note)
-    {
+    {        
         GetMole(note.Key).ActivateMole();
     }
 

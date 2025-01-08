@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Mole : MonoBehaviour
 {
@@ -7,9 +8,18 @@ public class Mole : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
+    [SerializeField] private VisualEffect hitVFX;
+    [SerializeField] private VisualEffect missFVX;
+    [SerializeField] private GameObject lightEffect;
+
     public void ShowHit(bool success)
     {
         string animation = success ? "Mole Hammer Hit" : "Mole Hammer Miss";
+
+        VisualEffect vfx = success ? hitVFX : missFVX;
+
+        vfx.Play();
+
         animator.Play(animation);
 
         if (success) DeactivateMole();
@@ -21,6 +31,8 @@ public class Mole : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
 
+        lightEffect.SetActive(true);
+
         Active = true;
     }
 
@@ -29,6 +41,8 @@ public class Mole : MonoBehaviour
         StopAllCoroutines();
 
         transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+
+        lightEffect.SetActive(false);
 
         Active = false;
     }
