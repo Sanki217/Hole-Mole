@@ -3,7 +3,12 @@ guid: 151c266e6cfe9c44a84dace84c0bcbca
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mlociszcze
+    second: {fileID: 2100000, guid: 3ab4ba0b56f4b324e97c1f6e4cf9c2c1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

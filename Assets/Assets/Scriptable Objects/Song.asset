@@ -224,18 +224,6 @@ MonoBehaviour:
     <Key>k__BackingField: 4
   - <TenthSeconds>k__BackingField: 577
     <Key>k__BackingField: 2
-  - <TenthSeconds>k__BackingField: 578
-    <Key>k__BackingField: 1
-  - <TenthSeconds>k__BackingField: 579
-    <Key>k__BackingField: 8
-  - <TenthSeconds>k__BackingField: 580
-    <Key>k__BackingField: 9
-  - <TenthSeconds>k__BackingField: 581
-    <Key>k__BackingField: 3
-  - <TenthSeconds>k__BackingField: 582
-    <Key>k__BackingField: 7
-  - <TenthSeconds>k__BackingField: 583
-    <Key>k__BackingField: 4
   - <TenthSeconds>k__BackingField: 584
     <Key>k__BackingField: 8
   - <TenthSeconds>k__BackingField: 585
@@ -456,8 +444,6 @@ MonoBehaviour:
     <Key>k__BackingField: 5
   - <TenthSeconds>k__BackingField: 683
     <Key>k__BackingField: 7
-  - <TenthSeconds>k__BackingField: 684
-    <Key>k__BackingField: 2
   - <TenthSeconds>k__BackingField: 685
     <Key>k__BackingField: 3
   - <TenthSeconds>k__BackingField: 686
@@ -2409,10 +2395,4 @@ MonoBehaviour:
   - <TenthSeconds>k__BackingField: 1670
     <Key>k__BackingField: 2
   - <TenthSeconds>k__BackingField: 1671
-    <Key>k__BackingField: 2
-  - <TenthSeconds>k__BackingField: 1672
-    <Key>k__BackingField: 3
-  - <TenthSeconds>k__BackingField: 1673
-    <Key>k__BackingField: 8
-  - <TenthSeconds>k__BackingField: 1674
     <Key>k__BackingField: 2
